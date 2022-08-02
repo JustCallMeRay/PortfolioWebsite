@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<head></head>
+
+<body>
+<p> Is the job a Technical Artist? : 
+  <input type="checkbox" id="isTA" onchange="updateInput()"> <br> 
+  If not, Job title :  
+  <input type="text" id="JobTitleInput">
+</p>
+<p> Is the job a junior Position? : 
+  <input type="checkbox" id="isJunior"> <br> 
+</p>
+<p> Am I under experianced? : 
+  <input type="checkbox" id="isUnderExp" onchange="updateInput()"> <br>
+  Am I over experianced? <input type="checkbox" id="isOverExp">
+</p>
+<p> Employer Name : 
+  <input type="text" id="EmployerNameInput">
+</p>
+<p> Employer company : 
+  <input type="text" id="EmployerCompanyInput">
+</p>
+<p> Team Size : <!-- Change to Enum if possible-->
+  <input type="text" id="TeamSizeInput">
+</p>
+<p> Submit : 
+  <input type="button" id="submit" onclick="updateText()">
+</p>
+
+<script>
+  function updateInput(){
+      document.getElementById("JobTitleInput").disabled = document.getElementById("isTA").checked;
+      document.getElementById("isOverExp").disabled = document.getElementById("isUnderExp").checked
+  }
+</script>
+
+Dear <span id="EmployerName">Chris</span>
+<p> 
+I’ve been studying technical art and programming for 
+<span id="codeExp">three</span> years and I’m looking for a job in the games industry. 
+I’m a highly motivated, hardworking individual with a passion for parallel programming. 
+I’m confident that, should you choose to employ me, I can bring the skills required of a 
+<span id="JobTitle">junior technical artist</span>. 
+I’ve participated in several Bristol Games Hub/ Co-op Mode events and, 
+with my own research, I’ve gained the knowledge necessary for the workplace.</p><p>
+I’ve done some freelance programming in the financial technology sector and 
+acted as consultant to friends employed in programming roles by answering questions on 
+shader methods, parallelism and technical art algorithms. I’ve also been a key team player for 
+<span id="GameJams">two</span> game jams; the first being the Global Games Jam (GGJ) 2022 where 
+I delivered C# programming and mathematical support to the main programmers and 
+created a custom lighting pass with two states. 
+The second was the Ludum Dare 50 jam in which I delivered stylised shaders including the skybox.
+<span id="ThirdGamesJamText"></span> 
+</p><p>
+
+I have a huge interest in working for <span id="EmployerCompany">Auroch Digital</span>. 
+I’m passionate about being part of a <span id="TeamSize">smaller</span> team with 
+existing <span id="WhyHere">cross department communication and 
+excited about being part of a rapidly expanding entity company.</span>
+
+Your mission goals and company ideals,<span id="company ideals"> like the anti-crunch culture</span> appeal to me. 
+I feel that being part of a smaller team would be more beneficial where more importance 
+is placed on individuals and responsibility is something I relish.</p><p>
+
+I hope I’ve conveyed to you my enthusiasm for the sector and for 
+<span id="EmployerCompany">Auroch Digital</span>.  
+My full details are available on my <a href="linktr.ee/RaymondTracing">linktree page</a>
+including <a href="https://docs.google.com/document/d/1Fs00X4-OQgqMPbj5ceAQ4_NiaBb-ni4f_8NCAYVsyaE/edit?usp=drivesdk">CV</a>, 
+<a href="https://www.artstation.com/callmeray">portfolio</a>, GGJ page and email address. 
+Please don’t hesitate to contact me if you have any questions or to discuss my application further. </p><p>
+<span id="ExpText"></span>
+
+Yours sincerely,<br>
+	Ray (Olek Kljajic Raymond.)<br> 
+	Pronouns: He/Him <br>
+</p>
+<p></p>
+Back Up Links :
+<a href="linktr.ee/RaymondTracing"> www.linktr.ee/RaymondTracing </a>
+</body>
+
+<script> 
+var ones = ['', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine'];
+var tens = ['', '', 'twenty', 'thirty', 'forty', 'fifty', 'sixty', 'seventy', 'eighty', 'ninety'];
+var teens = ['ten', 'eleven', 'twelve', 'thirteen', 'fourteen', 'fifteen', 'sixteen', 'seventeen', 'eighteen', 'nineteen'];
+
+function convert(num) {
+  if (num < 10) 
+  	return ones[num];
+  else if (num >= 10 && num < 20) 
+  	return teens[num - 10];
+  else {
+    return tens[Math.floor(num / 10)] + " " + ones[num % 10];
+  }
+}
+
+//Alt Z in VScode wraps the line so it's easier to read. 
+const UnderExpText = `I recognise that my professional experience may not be quite what you are looking for, but my enthusiasm, commitment to learn, dedicated approach to work and my confidence in performing that role will help alleviate the lack of experience. I also recognise that experience would reflect potential salary. </p><p>`;
+const NormExpText = "";
+const OverExpText = "";
+
+function updateText(){
+  document.getElementById("EmployerCompany").innerHTML = document.getElementById("EmployerCompanyInput").value;
+  document.getElementById("EmployerName").innerHTML = document.getElementById("EmployerNameInput").value;  
+  document.getElementById("TeamSize").innerHTML = document.getElementById("TeamSizeInput").value;
+  var sb = "";
+  if (document.getElementById("isJunior").checked){
+    sb += "junior ";
+  }
+  if (document.getElementById("isTA").checked){
+    sb += "technical artist";
+  } else {
+    sb += document.getElementById("JobTitleInput").value;
+  }
+  document.getElementById("JobTitle").innerHTML = sb;
+  document.getElementById("EmployerCompany").innerHTML = document.getElementById("EmployerCompanyInput").value;
+  if (document.getElementById("isUnderExp").checked){
+    document.getElementById("ExpText").innerHTML = UnderExpText;    
+  } else if (document.getElementById("isOverExp").checked){
+    document.getElementById("ExpText").innerHTML = OverExpText;    
+  } else {
+    document.getElementById("ExpText").innerHTML = NormExpText;    
+  }
+}
+
+
+//Updates Date
+const DeltaDate = new Date().getUTCFullYear()-2022;
+const Exp = DeltaDate + 3;
+document.getElementById("codeExp").innerHTML = convert(Exp);
+const Jams = DeltaDate + 2;
+document.getElementById("GameJams").innerHTML = convert(Jams);
+</script>

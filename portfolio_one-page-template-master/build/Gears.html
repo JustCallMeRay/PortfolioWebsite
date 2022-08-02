@@ -1,0 +1,111 @@
+<!--	TODO
+	Scrolling Errors
+	~~Heading and SubHeading 
+		~~Gears
+		~~Vertex animation and Masking studies
+
+	Photos and Videos
+		Have 3 screenshots
+			1 code/graph
+			2 Object
+		Get gif
+
+	~~Insert Text
+
+	Artstaion_ORDER = {
+		gamejams,
+		Coinflip,
+		gears,
+		landscape,
+		rain,
+
+
+
+
+-->
+
+<!DOCTYPE html><html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width,initial-scale=1">
+		<title>Ray's Portfolio -- Gears</title>
+		<meta name="description" content="A portfolio piece that demonstrates vertex animation and masking">
+		<meta name="keywords" content="Technical art, Screenshots, Vertex Animation, Masking" link rel="shortcut icon" href="favicon.ico">
+		<link rel="shortcut icon" href="static/images/favicons/favicon.png" type="image/x-icon">
+		<link rel="apple-touch-icon" href="static/images/favicons/apple-touch-icon.png">
+		<link rel="apple-touch-icon-precomposed" href="static/images/favicons/apple-touch-icon-precomposed.png">
+		<link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,300,400,600,700,800%7COpen+Sans+Condensed:300&amp;subset=latin,cyrillic" rel="stylesheet" type="text/css">
+		<link rel="stylesheet" href="static/css/screen.min.css">
+		<link rel="stylesheet" href="static/css/custom.min.css">
+	</head>
+<body>
+
+<!-- Header-->
+<header class="main-header"><div class="first-nav"><div class="container"><nav class="first-nav__links"><ul><li>
+    	<a href="\index.html">Back</a></li><!--li><a href="#">français</a></li><li><a href="#">deutsch</a //-->
+        </li></ul></nav>
+		<a class="first-nav__navcontrol icon icon_menu js-navcontrol" href="#">Menu</a></div></div><div class="second-nav js-nav"><div class="container"><a class="second-nav__logo"><span>OR</span></a><nav class="menu"><ul><li><a class="js-link js-anchor is-selected" href="\index.html">Home</a></li><li><a class="js-link js-anchor" href="#">About</a></li>
+        <li style="margin-left: 0px;"> 
+        <!--
+			a class="js-link js-anchor" href="#services">Services</a></li><li><a class="js-link js-anchor" href="#process">Process</a
+		--> 
+		</li>
+        <li><a class="js-link js-anchor" href="coinflip.html">Previous</a></li>
+		<li><a class="js-link js-anchor" href="landscape.html">Next</a></li>
+		<li><a class="js-link js-anchor" href="index.html/#contacts">Contacts</a></li></ul>
+		</nav></div></div></header>
+
+		 <!-- Home section-->
+		 <section class="home-section" id="home" style="padding-top: 0px;"></section>
+		 <!--<section class="home-section" id="home"><div class="home-section__bg"></div>
+        <div class="home-section__overlay"><div class="container">
+            <header class="home-section__header">
+                <h1>Gears </h1>
+                <h2>Vertex animation and Masking studies</h2>
+            </header>
+        </div>
+        </div>
+        </section>-->
+
+		<section class="common-section" id="services" style="padding-top: 0px;"></section>
+        <section class="common-section" id="process" style="padding-top: 0px;"></section>
+
+		<section class="common-section" id="projects">
+			<header class="common-section__header"> 
+				<h2>Vertex Animation</h2>
+				<p>
+					<p>The gears were modelled in fusion 360 as blender&rsquo;s extra meshes did not give the detail I wanted, the f360 sketch imported into blender (through FBX format) where they were positioned, UV unwrapped (top down projection onto second UV channel) and texture painted. In Unreal, each gear is masked by rounding U and V of UVs and multiplying permutations. Each gear is then spun, by vertex animation, around an unreal socket at each gear&rsquo;s centre (placed in blender, passed in by parameter.) Rotation speed is calculated by dividing time into the correct scale for each gear, this allows for time to be scaled by a parameter settable by a designer or in code to speed up or slow down the gear train. Using Unreal&rsquo;s &ldquo;per instance random&rdquo; node I can; add a random value to time, (offsetting the rotation to avoid similar looking trains), or multiply it with the time to give a varying speed. (A similar effect could be achieved in other engines with a random value based on location.)</p><br>
+	
+					<p>The intention of this effect was to create a low cost*, accessible way to add interest to walls, doors and other areas that appear frequently.</p><br><br>
+	
+					<p>*Masking via UVs allowed for colour/albedo data to be stored in vertex colours, so no textures were needed and only a single draw call, this effect can be scaled up easily, only increasing in expense after every square number of gears, (2,4,9,16...) But will eventually become more expensive than other methods such as pivot caching or a texture mask. </p> <br><br>
+				</p>
+			</header>
+			
+
+			<div class="projects-wrap"><div class="grid-container"><div class="projects">
+				<figure class="projects__item"><img src="static/images/projects/gears/gif.gif" alt="Gears Photo ">
+					<figcaption><a class="icon icon_link" href="https://cdn-animation.artstation.com/p/video_sources/000/802/910/gears-094826.mp4" rel="last">Click for video</a></figcaption></figure>
+				<figure class="projects__item"><img src="static/images/projects/2.jpg" alt="Gears Photo ">
+					<figcaption><a class="icon icon_link" href="https://www.artstation.com/artwork/X12EQn" rel="last">Click for art station page</a></figcaption></figure>
+				<figure class="projects__item"><img src="static/images/projects/5.jpg" alt="Duis feugiat, metus eu ullamcorper accumsan, massa risus dictum nisi">
+					<figcaption><a class="icon icon_link" href="#" rel="last">Duis feugiat, metus eu ullamcorper accumsan, massa risus dictum nisi</a></figcaption></figure>
+				<figure class="projects__item"><img src="static/images/projects/6.jpg" alt="Donec non ligula imperdiet, tincidunt quam ut, pellentesque nisi">
+					<figcaption><a class="icon icon_link" href="#" rel="last">Donec non ligula imperdiet, tincidunt quam ut, pellentesque nisi</a></figcaption></figure>
+			
+		</section>
+		
+		
+		
+		<section class="common-section" id="testimonials" style="padding-top: 0px;"></section>
+		<section class="common-section" id="contact-card" style="padding-top: 0px;"></section>
+		<!--<section class="common-section" id="" style="padding-top: 0px;"></section> -->
+
+		
+
+
+<!-- Footer-->
+<footer class="main-footer"><div class="container"><p class="main-footer__copyright"><span>Olek Raymond</span></p>
+<a class="main-footer__gotop icon icon_gotop js-anchor" href="#home">To top!</a>    
+<p class="main-footer__links">Designed by&nbsp;<a href="http://orlovmax.com" rel="nofollow">Maxim Orlov</a></p></div></footer><script src="static/js/body.min.js"></script></body></html>
