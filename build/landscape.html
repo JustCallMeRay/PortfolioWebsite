@@ -13,9 +13,9 @@
 		<link rel="stylesheet" href="static/css/screen.min.css">
 		<link rel="stylesheet" href="static/css/custom.min.css">
 		
-		<link rel="prev" href="ggj.html" />
-		<link rel="next" href="Gears.html" />
-		<link rel="canonical" href="coinflip.html"/> 
+		<link rel="prev" href="Gears.html" />
+		<link rel="next" href="??Next??.html" />
+		<link rel="canonical" href="landscape.html"/> 
 	</head>
 <body>
 
@@ -29,12 +29,8 @@
 			a class="js-link js-anchor" href="#services">Services</a></li><li><a class="js-link js-anchor" href="#process">Process</a
 		--> 
 		</li>
-        <li>
-			<a class="js-link js-anchor" href="ggj.html">
-				Previous
-			</a> <!-- try" is-selected "in class name -->
-		</li>
-		<li><a class="js-link js-anchor" href="Gears.html">Next</a></li>
+        <li><a class="js-link js-anchor" href="Gears.html">Previous</a></li>
+		<li><a class="js-link js-anchor" href="??Next??.html">Next</a></li>
 		<li><a class="js-link js-anchor" href="index.html/#contacts">Contacts</a></li></ul>
 		</nav></div></div></header>
 
@@ -55,26 +51,42 @@
 
 		<section class="common-section" id="projects">
 			<header class="common-section__header"> 
-				<h2>Vertex Animation study, Coin</h2>
+				<h2>Compute Shaders and procedural generation</h2>
 				<p>
 					<p>
-					I was tasked with animating a random coin flip with the intention to be more interesting and scalable than a standard UI implementation. A random number is generated using squirrel noise* then transformed into a Boolean value using mod2 == 1, I also wrote an overload so it can act more like UI if prefered. This boolean is then sent to the shader where a heads or tails texture is sampled on the "top" face (that lands facing upwards) and the other on the bottom face. I chose to sample both textures so if the player looks closely then can see both heads and tails while the coin is flipping and to avoid loading and unloading textures which may cause the texture to change abruptly at a more noticeable time.
+						This landscape was generated completely procedurally using mostly GPU compute. There are many CPU implementations, but they often sacrifice performance as the base algorithms are better suited to parallel compute. <br>
+					</p>
+					<p>
+						The CPU keeps track of where the player is and dispatches a compute shader which generates a visual chunk (but not a collision mesh) when the player is close enough. The CPU also handles normal optimizations like batching draw calls, occlusion and frustum culling. The Compute shader then generates a heightmap* based on several noise functions, this is then used as the height of the vertices of a subdivided square. (This is much more performant than marching squares/cubes and doesn't suffer much as the mesh is a convex plane.) It also uses voronoi noise to create biome areas stored as an ID number which are used in the surface shader.† This could  be used in the noise functions if the terrain is too visually similar, (altering min/max heights, amount of layers in perlin noise, creating sharper hill peaks, etc.) <br> 
+					</p>	
+					<p>
+						The compute shader also calculates vertex normals as I needed them for my surface shader. I decided to keep the function simple so it would benefit from the parallelism of GPU compute, after the height calculations I re-sync all the threads so I can use the height values in the buffer, these are then used in several cross product calculations and the values of these are averaged to obtain the normals which are then placed in the buffer. The amount of cross product calculations can be determined at runtime depending on performance, hardware and HLOD, another compute shader can also be added and dispatched later, acting as an async function. 
 					<br></p>
 					<p>
- 					The two textures are only changed at the apex of the flip, when the coin is spinning fastest, concealing the change to players. The same principles can be used for other objects like dice, only choosing one face and changing the remaining 3 visible faces so no duplicate faces are shown.<br></p> 
+						When the player is neighbouring a chunk that does not yet have collision, the buffer data is read from the GPU and a portion of these points are used to create a collision mesh.‡ The decimated mesh is then re-made on the CPU and set to the collider and cached. 
+					<br></p>
 					<p>
-					The coin was originally animated on the shader but variances in spawn times made this unpredictable and reduced scalability. I considered a bone animation but decided against it as it would only work for one mesh and updating the mesh would be much more complex. I instead used a code based animation, which can be iterated on quickly or allow for multiple variants to avoid repetition.<br></p> 
-					<p> 
-					*<a href="https://youtu.be/LWFzPP8ZbdU">This</a> white noise function was introduced to me via a GDC talk and had already been implemented (see my <a href="https://github.com/JustCallMeRay/Snippets/blob/main/MySquirrelNoise.cs">Github</a>) in this project via a singleton so felt more appropriate. This also made the code more scalable since a weight can be assigned.<br> 
+						* The heightmap is never baked, placed in shared memory, or stored outside of vertices but is a useful analogy and a helpful visualisation which is why I chose to include it. 
+						<br>
+					</p>
+					<p>
+						† Placed meshes (like trees, grass, ect) can either run a worley noise function to recreate the biome ID or (HLSL) code can be added to store the points where the distance to three or more biome centres is similar/ equal in a different buffer and then create a biome bounding prism or a simple lookup of the closest vertex in the GPU buffer. 
+						<br>
+					</p>
+					<p>
+						‡ These are sampled by using a larger triangle where each edge goes through one vertex (so each quad is 2x2 units, and having half as much detail but not changing any information in the buffer). This can be done by creating a new GPU buffer, (since only a position would be needed per index and fewer indices, this would be pretty small) but I felt it more performant to cache the whole buffer and only use certain indices from it. This does mean the high detail mesh needs to have an odd number of vertices in the X and Y directions, or some code added that handles it. (This could be done by adding a tall thin quad instead of a square one and a small square in the corner.) 
+						<br>
 					</p>
 
 				</p>
 			</header>
 			
 
-			<div class="projects-wrap"><div class="grid-container"><div class="projects">
+			<div class="projects-wrap">
+				<div class="grid-container">
+				<div class="projects">
 				<figure class="projects__item">
-					<img src="static/images/projects/coin/coin.gif" alt="Gears Photo ">
+					<img src="static/images/projects/landscape/landscape1.gif" alt="Gears gif ">
 					<figcaption>
 						<a class="icon icon_link" href="https://cdn-animation.artstation.com/p/video_sources/000/802/910/gears-094826.mp4">
 							Click for video
@@ -82,7 +94,7 @@
 					</figcaption>
 				</figure>
 				<figure class="projects__item">
-					<img src="static/images/projects/coin/1.jpg" alt="Gears Photo ">
+					<img src="static/images/projects/landscape/landscape2.gif" alt="Gears Photo ">
 					<figcaption>
 						<a class="icon icon_link" href="https://www.artstation.com/artwork/X12EQn">
 							Click for art station page
@@ -90,18 +102,18 @@
 					</figcaption>
 				</figure>
 				<figure class="projects__item">
-					<img src="static/images/projects/coin/2.jpg" alt="Alt text">
+					<img src="static/images/projects/landscape/1.jpg" alt="alt text">
 					<figcaption>
 						<a class="icon icon_link" href="#">
-							Alt text
+							Duis feugiat, metus eu ullamcorper accumsan, massa risus dictum nis
 						</a>
 					</figcaption>
 				</figure>
 				<figure class="projects__item">
-					<img src="static/images/projects/coin/3.jpg" alt="Alt text">
+					<img src="static/images/projects/landscape/2.jpg" alt="alt text">
 					<figcaption>
-						<a class="icon icon_link" href="#" >
-							Donec non ligula imperdiet, tincidunt quam ut, pellentesque nisi	
+						<a class="icon icon_link" href="#">
+							Donec non ligula imperdiet, tincidunt quam ut, pellentesque nisi
 						</a>
 					</figcaption>
 				</figure>

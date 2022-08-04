@@ -3,7 +3,7 @@
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width,initial-scale=1">
-		<title>Ray's Portfolio -- Gears</title>
+		<title>Ray's Portfolio -- Rain</title>
 		<meta name="description" content="A portfolio piece that demonstrates vertex animation and masking">
 		<meta name="keywords" content="Technical art, Screenshots, Vertex Animation, Masking" link rel="shortcut icon" href="favicon.ico">
 		<link rel="shortcut icon" href="static/images/favicons/favicon.png" type="image/x-icon">
@@ -13,9 +13,9 @@
 		<link rel="stylesheet" href="static/css/screen.min.css">
 		<link rel="stylesheet" href="static/css/custom.min.css">
 		
-		<link rel="prev" href="ggj.html" />
-		<link rel="next" href="Gears.html" />
-		<link rel="canonical" href="coinflip.html"/> 
+		<link rel="prev" href="landscape.html" />
+		<!-- <link rel="next" href=".html" /> -->
+		<link rel="canonical" href="rain.html"/> 
 	</head>
 <body>
 
@@ -29,12 +29,8 @@
 			a class="js-link js-anchor" href="#services">Services</a></li><li><a class="js-link js-anchor" href="#process">Process</a
 		--> 
 		</li>
-        <li>
-			<a class="js-link js-anchor" href="ggj.html">
-				Previous
-			</a> <!-- try" is-selected "in class name -->
-		</li>
-		<li><a class="js-link js-anchor" href="Gears.html">Next</a></li>
+        <li><a class="js-link js-anchor" href="landscape.html">Previous</a></li>
+		<li><a class="js-link js-anchor is-selected" href="landscape.html" aria-disabled="true">Next</a></li>
 		<li><a class="js-link js-anchor" href="index.html/#contacts">Contacts</a></li></ul>
 		</nav></div></div></header>
 
@@ -43,7 +39,7 @@
 		 <!--<section class="home-section" id="home"><div class="home-section__bg"></div>
         <div class="home-section__overlay"><div class="container">
             <header class="home-section__header">
-                <h1>Gears </h1>
+                <h1>rain </h1>
                 <h2>Vertex animation and Masking studies</h2>
             </header>
         </div>
@@ -55,34 +51,45 @@
 
 		<section class="common-section" id="projects">
 			<header class="common-section__header"> 
-				<h2>Vertex Animation study, Coin</h2>
+				<h2>Rain/ weather shader effects</h2>
 				<p>
 					<p>
-					I was tasked with animating a random coin flip with the intention to be more interesting and scalable than a standard UI implementation. A random number is generated using squirrel noise* then transformed into a Boolean value using mod2 == 1, I also wrote an overload so it can act more like UI if prefered. This boolean is then sent to the shader where a heads or tails texture is sampled on the "top" face (that lands facing upwards) and the other on the bottom face. I chose to sample both textures so if the player looks closely then can see both heads and tails while the coin is flipping and to avoid loading and unloading textures which may cause the texture to change abruptly at a more noticeable time.
+						I wanted to add to my procedural landscape with weather effects to increase realism and it felt necessary as most modern open world titles have them. This meant that all shader information had to be decided on the GPU, calculated using XYZ coordinates or a global variable controlled by the CPU. 
 					<br></p>
 					<p>
- 					The two textures are only changed at the apex of the flip, when the coin is spinning fastest, concealing the change to players. The same principles can be used for other objects like dice, only choosing one face and changing the remaining 3 visible faces so no duplicate faces are shown.<br></p> 
+						I decided to do water first as this would be the only effect planned that changed the landscape surface shader. The effect is split up into three parts; rain drops hitting a surface, rain drops hitting water (ie a puddle) or a streak running down a surface. I chose to implement these with an "if" statement /switch, as they are all similarly expensive so the wavefront is near parallel, this approach does sacrifice the ability to blend from one effect to the other but is much better for performance. *
+					<br></p>
 					<p>
-					The coin was originally animated on the shader but variances in spawn times made this unpredictable and reduced scalability. I considered a bone animation but decided against it as it would only work for one mesh and updating the mesh would be much more complex. I instead used a code based animation, which can be iterated on quickly or allow for multiple variants to avoid repetition.<br></p> 
-					<p> 
-					*<a href="https://youtu.be/LWFzPP8ZbdU">This</a> white noise function was introduced to me via a GDC talk and had already been implemented (see my <a href="https://github.com/JustCallMeRay/Snippets/blob/main/MySquirrelNoise.cs">Github</a>) in this project via a singleton so felt more appropriate. This also made the code more scalable since a weight can be assigned.<br> 
-					</p>
-
+						The choosing of which effect to use is done by evaluating the vertex normals, (so areas that have a normal that points upwards will only receive the raindrops on surface effect.) 
+					<br></p>
+					<p>	
+						I used triplanar projection to sample the textures for the effect, as this meant I can avoid creating UVs in the compute shader and the effect is always the correct size, even on props. 
+					<br></p>
+					<p>
+						*As each compute unit renders 4 pixels, it is possible for a single unit to do more than one of the effects. As this is a rare occurrence not every thread group will experience this so this method is still more efficient. There is also a possibility the compiler/engine will make changes to avoid this, masking the line by thread rather than by pixel, (if there is a way to enforce this, I would like to know, more out of interest than efficiency.)
+					<br></p>	
+					<p>	
+						The shader is also loosely based on a <a href="https://www.youtube.com/watch?v=IjQWRjWZGn0">
+						GDC talk</a> but had to be changed to work with not only Unity (not pictured as unreal looks better) but also my previous code. This also meant that performance was more important as I am unable to occlusion cull as effectively as if it were a normal mesh (see 
+						<a href="landscape.html">my landscape</a> section).
+					<br></p>	
 				</p>
 			</header>
 			
 
-			<div class="projects-wrap"><div class="grid-container"><div class="projects">
+			<div class="projects-wrap">
+				<div class="grid-container">
+				<div class="projects">
 				<figure class="projects__item">
-					<img src="static/images/projects/coin/coin.gif" alt="Gears Photo ">
+					<img src="static/images/projects/rain/rain.gif" alt="rain gif ">
 					<figcaption>
-						<a class="icon icon_link" href="https://cdn-animation.artstation.com/p/video_sources/000/802/910/gears-094826.mp4">
+						<a class="icon icon_link" href="https://cdn-animation.artstation.com/p/video_sources/000/802/910/rain-094826.mp4">
 							Click for video
 						</a>
 					</figcaption>
 				</figure>
 				<figure class="projects__item">
-					<img src="static/images/projects/coin/1.jpg" alt="Gears Photo ">
+					<img src="static/images/projects/rain/1.jpg" alt="rain Photo ">
 					<figcaption>
 						<a class="icon icon_link" href="https://www.artstation.com/artwork/X12EQn">
 							Click for art station page
@@ -90,18 +97,18 @@
 					</figcaption>
 				</figure>
 				<figure class="projects__item">
-					<img src="static/images/projects/coin/2.jpg" alt="Alt text">
+					<img src="static/images/projects/rain/2.jpg" alt="alt text">
 					<figcaption>
 						<a class="icon icon_link" href="#">
-							Alt text
+							Duis feugiat, metus eu ullamcorper accumsan, massa risus dictum nis
 						</a>
 					</figcaption>
 				</figure>
 				<figure class="projects__item">
-					<img src="static/images/projects/coin/3.jpg" alt="Alt text">
+					<img src="static/images/projects/rain/3.jpg" alt="alt text">
 					<figcaption>
-						<a class="icon icon_link" href="#" >
-							Donec non ligula imperdiet, tincidunt quam ut, pellentesque nisi	
+						<a class="icon icon_link" href="#">
+							Donec non ligula imperdiet, tincidunt quam ut, pellentesque nisi
 						</a>
 					</figcaption>
 				</figure>

@@ -3,7 +3,7 @@
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width,initial-scale=1">
-		<title>Ray's Portfolio -- Gears</title>
+		<title>Ray's Portfolio -- GGJ</title>
 		<meta name="description" content="A portfolio piece that demonstrates vertex animation and masking">
 		<meta name="keywords" content="Technical art, Screenshots, Vertex Animation, Masking" link rel="shortcut icon" href="favicon.ico">
 		<link rel="shortcut icon" href="static/images/favicons/favicon.png" type="image/x-icon">
@@ -13,9 +13,9 @@
 		<link rel="stylesheet" href="static/css/screen.min.css">
 		<link rel="stylesheet" href="static/css/custom.min.css">
 		
-		<link rel="prev" href="ggj.html" />
-		<link rel="next" href="Gears.html" />
-		<link rel="canonical" href="coinflip.html"/> 
+		<link rel="first" href="ggj.html" />
+		<link rel="next" href="coinflip.html" />
+		<link rel="canonical" href="ggj.html"/> 
 	</head>
 <body>
 
@@ -30,11 +30,11 @@
 		--> 
 		</li>
         <li>
-			<a class="js-link js-anchor" href="ggj.html">
+			<a class="js-link js-anchor is-selected" href="" aria-disabled="true" disabled>
 				Previous
-			</a> <!-- try" is-selected "in class name -->
+			</a>
 		</li>
-		<li><a class="js-link js-anchor" href="Gears.html">Next</a></li>
+		<li><a class="js-link js-anchor" href="coinflip.html">Next</a></li>
 		<li><a class="js-link js-anchor" href="index.html/#contacts">Contacts</a></li></ul>
 		</nav></div></div></header>
 
@@ -43,7 +43,7 @@
 		 <!--<section class="home-section" id="home"><div class="home-section__bg"></div>
         <div class="home-section__overlay"><div class="container">
             <header class="home-section__header">
-                <h1>Gears </h1>
+                <h1>ggj </h1>
                 <h2>Vertex animation and Masking studies</h2>
             </header>
         </div>
@@ -55,34 +55,30 @@
 
 		<section class="common-section" id="projects">
 			<header class="common-section__header"> 
-				<h2>Vertex Animation study, Coin</h2>
+				<h2>Global Games Jam</h2>
 				<p>
 					<p>
-					I was tasked with animating a random coin flip with the intention to be more interesting and scalable than a standard UI implementation. A random number is generated using squirrel noise* then transformed into a Boolean value using mod2 == 1, I also wrote an overload so it can act more like UI if prefered. This boolean is then sent to the shader where a heads or tails texture is sampled on the "top" face (that lands facing upwards) and the other on the bottom face. I chose to sample both textures so if the player looks closely then can see both heads and tails while the coin is flipping and to avoid loading and unloading textures which may cause the texture to change abruptly at a more noticeable time.
+						For the global games jam our team decided to create a game with two main states, summarised by "IsDepressed". To create a depressing theme I designed a complete lighting system to complement Unity's post process effects. The first state (not depressed) had a "toon" shader, aiming to be less realistic and more bright and cheerful, invoking a happier feeling. This was done by cell shading (colour and brightness) using a simple multiply, round then divide method. This method allowed fast iteration times if the artists weren't happy with the results as I could change the "precision" of the colour in a single variable, I also added a constant value to the brightness and increased saturation. The second state (aimed to be grungy, dirty, dark and depressing) was achieved by first darkening the lighting then desaturating the colour. I also added a grunge (grey scale) alpha/ texture to increase the roughness in spots and used this as a heightmap to vary the normals of the object, making them look more dirty, it also uses specular reflections to give some of the grunge an oily like surface. 
 					<br></p>
 					<p>
- 					The two textures are only changed at the apex of the flip, when the coin is spinning fastest, concealing the change to players. The same principles can be used for other objects like dice, only choosing one face and changing the remaining 3 visible faces so no duplicate faces are shown.<br></p> 
-					<p>
-					The coin was originally animated on the shader but variances in spawn times made this unpredictable and reduced scalability. I considered a bone animation but decided against it as it would only work for one mesh and updating the mesh would be much more complex. I instead used a code based animation, which can be iterated on quickly or allow for multiple variants to avoid repetition.<br></p> 
-					<p> 
-					*<a href="https://youtu.be/LWFzPP8ZbdU">This</a> white noise function was introduced to me via a GDC talk and had already been implemented (see my <a href="https://github.com/JustCallMeRay/Snippets/blob/main/MySquirrelNoise.cs">Github</a>) in this project via a singleton so felt more appropriate. This also made the code more scalable since a weight can be assigned.<br> 
-					</p>
-
+						I aim for all my code to be written in a scalable fashion, especially in a game jam where iteration time and designer friendly code is of utmost importance. For this reason some aspects of this code were knowingly written without certain optimisations (for example integer maths would normally be avoided in GPU code as it is all compiled down to floats and (re)cast to an integer when called.)
+					<br></p>
+						
 				</p>
 			</header>
 			
 
 			<div class="projects-wrap"><div class="grid-container"><div class="projects">
 				<figure class="projects__item">
-					<img src="static/images/projects/coin/coin.gif" alt="Gears Photo ">
+					<img src="static/images/projects/ggj/ggj.gif" alt="GGJ Photo ">
 					<figcaption>
-						<a class="icon icon_link" href="https://cdn-animation.artstation.com/p/video_sources/000/802/910/gears-094826.mp4">
+						<a class="icon icon_link" href="https://cdn-animation.artstation.com/p/video_sources/000/802/910/ggj-094826.mp4">
 							Click for video
 						</a>
 					</figcaption>
 				</figure>
 				<figure class="projects__item">
-					<img src="static/images/projects/coin/1.jpg" alt="Gears Photo ">
+					<img src="static/images/projects/ggj/1.jpg" alt="ggj Photo ">
 					<figcaption>
 						<a class="icon icon_link" href="https://www.artstation.com/artwork/X12EQn">
 							Click for art station page
@@ -90,7 +86,7 @@
 					</figcaption>
 				</figure>
 				<figure class="projects__item">
-					<img src="static/images/projects/coin/2.jpg" alt="Alt text">
+					<img src="static/images/projects/ggj/2.jpg" alt="Alt text">
 					<figcaption>
 						<a class="icon icon_link" href="#">
 							Alt text
@@ -98,7 +94,7 @@
 					</figcaption>
 				</figure>
 				<figure class="projects__item">
-					<img src="static/images/projects/coin/3.jpg" alt="Alt text">
+					<img src="static/images/projects/ggj/3.jpg" alt="Alt text">
 					<figcaption>
 						<a class="icon icon_link" href="#" >
 							Donec non ligula imperdiet, tincidunt quam ut, pellentesque nisi	
