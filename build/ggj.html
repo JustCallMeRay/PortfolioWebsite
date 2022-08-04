@@ -59,10 +59,12 @@
 				<p>
 					<p>
 						For the global games jam our team decided to create a game with two main states, summarised by "IsDepressed". To create a depressing theme I designed a complete lighting system to complement Unity's post process effects. The first state (not depressed) had a "toon" shader, aiming to be less realistic and more bright and cheerful, invoking a happier feeling. This was done by cell shading (colour and brightness) using a simple multiply, round then divide method. This method allowed fast iteration times if the artists weren't happy with the results as I could change the "precision" of the colour in a single variable, I also added a constant value to the brightness and increased saturation. The second state (aimed to be grungy, dirty, dark and depressing) was achieved by first darkening the lighting then desaturating the colour. I also added a grunge (grey scale) alpha/ texture to increase the roughness in spots and used this as a heightmap to vary the normals of the object, making them look more dirty, it also uses specular reflections to give some of the grunge an oily like surface. 
-					<br></p>
+						<br>
+					</p>
 					<p>
 						I aim for all my code to be written in a scalable fashion, especially in a game jam where iteration time and designer friendly code is of utmost importance. For this reason some aspects of this code were knowingly written without certain optimisations (for example integer maths would normally be avoided in GPU code as it is all compiled down to floats and (re)cast to an integer when called.)
-					<br></p>
+						<br>
+					</p>
 						
 				</p>
 			</header>
@@ -70,12 +72,10 @@
 
 			<div class="projects-wrap"><div class="grid-container"><div class="projects">
 				<figure class="projects__item">
-					<img src="https://cdna.artstation.com/p/assets/images/images/051/579/660/large/ray-unknown.jpg?1657650868" alt="Not Found" 
-						onerror=this.src="static/images/projects/ggj/ggj.gif">
-					<!-- <img src="static/images/projects/ggj/ggj.gif" alt="GGJ Photo "> -->
+					<img src="static/images/projects/ggj/ggj.gif" alt="GGJ Photo ">
 					<figcaption>
-						<a class="icon icon_link" href="https://cdn-animation.artstation.com/p/video_sources/000/802/910/ggj-094826.mp4">
-							Click for Art station page
+						<a class="icon icon_link" href="https://cdn-animation.artstation.com/p/video_sources/000/802/912/coinflip-094804.mp4">
+							Click for Art station video
 						</a>
 					</figcaption>
 				</figure>
@@ -89,7 +89,8 @@
 					</figcaption>
 				</figure>
 				<figure class="projects__item">
-					<img src="static/images/projects/ggj/2.jpg" alt="Alt text">
+					<img src="https://cdna.artstation.com/p/assets/images/images/051/579/660/large/ray-unknown.jpg?1657650868" alt="Not Found" 
+						onerror=this.src="static/images/projects/ggj/1.jpg">
 					<figcaption>
 						<a class="icon icon_link" href="#">
 							Alt text
