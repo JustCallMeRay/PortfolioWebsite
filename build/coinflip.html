@@ -58,23 +58,24 @@
 				<h2>Vertex Animation study, Coin</h2>
 				<p>
 					<p>
-					I was tasked with animating a random coin flip with the intention to be more interesting and scalable than a standard UI implementation. A random number is generated using squirrel noise* then transformed into a Boolean value using mod2 == 1, I also wrote an overload so it can act more like UI if prefered. This boolean is then sent to the shader where a heads or tails texture is sampled on the "top" face (that lands facing upwards) and the other on the bottom face. I chose to sample both textures so if the player looks closely then can see both heads and tails while the coin is flipping and to avoid loading and unloading textures which may cause the texture to change abruptly at a more noticeable time.
-					<br></p>
+					I was tasked with animating a random coin flip with the intention to be more interesting and scalable than a standard UI implementation. A random number is generated using squirrel noise* then transformed into a Boolean value using mod2 == 1, I also wrote an overload so it can act more like UI if prefered. This boolean is then sent to the shader where a heads or tails texture is sampled on the "top" face (that lands facing upwards) and the other on the bottom face. I chose to sample both textures so if the player looks closely then can see both heads and tails while the coin is flipping and to avoid loading and unloading textures which may cause the texture to change abruptly at a more noticeable time. <br> 
+					</p>
 					<p>
- 					The two textures are only changed at the apex of the flip, when the coin is spinning fastest, concealing the change to players. The same principles can be used for other objects like dice, only choosing one face and changing the remaining 3 visible faces so no duplicate faces are shown.<br></p> 
+ 					The two textures are only changed at the apex of the flip, when the coin is spinning fastest, concealing the change to players. The same principles can be used for other objects like dice, only choosing one face and changing the remaining 3 visible faces so no duplicate faces are shown.<br> 
+					</p> 
 					<p>
-					The coin was originally animated on the shader but variances in spawn times made this unpredictable and reduced scalability. I considered a bone animation but decided against it as it would only work for one mesh and updating the mesh would be much more complex. I instead used a code based animation, which can be iterated on quickly or allow for multiple variants to avoid repetition.<br></p> 
+					The coin was originally animated on the shader but variances in spawn times made this unpredictable and reduced scalability. I considered a bone animation but decided against it as it would only work for one mesh and updating the mesh would be much more complex. I instead used a code based animation, which can be iterated on quickly or allow for multiple variants to avoid repetition. <br> 
+					</p> 
 					<p> 
 					*<a href="https://youtu.be/LWFzPP8ZbdU">This</a> white noise function was introduced to me via a GDC talk and had already been implemented (see my <a href="https://github.com/JustCallMeRay/Snippets/blob/main/MySquirrelNoise.cs">Github</a>) in this project via a singleton so felt more appropriate. This also made the code more scalable since a weight can be assigned.<br> 
 					</p>
-
 				</p>
 			</header>
 			
 
 			<div class="projects-wrap"><div class="grid-container"><div class="projects">
 				<figure class="projects__item">
-					<img src="static/images/projects/coin/coin.gif" alt="Gears Photo ">
+					<img src="static/images/projects/coin/coin.gif" alt="Coinflip Gif">
 					<figcaption>
 						<a class="icon icon_link" href="https://cdn-animation.artstation.com/p/video_sources/000/802/910/gears-094826.mp4">
 							Click for video
@@ -82,7 +83,16 @@
 					</figcaption>
 				</figure>
 				<figure class="projects__item">
-					<img src="static/images/projects/coin/1.jpg" alt="Gears Photo ">
+					<img src="static/images/projects/coin/coin1.gif" alt="Coinflip Gif">
+					<figcaption>
+						<a class="icon icon_link" href="https://cdn-animation.artstation.com/p/video_sources/000/898/465/2022-08-04-18-39-11.mp4">
+							Click for video
+						</a>
+					</figcaption>
+				</figure>
+				<figure class="projects__item">
+					<img src="https://cdna.artstation.com/p/assets/images/images/052/381/032/large/ray-coins.jpg?1659635665" alt="Coin Textures" onerror=this.src="static/images/projects/ggj/1.jpg">
+					<!-- <img src="static/images/projects/coin/2.jpg" alt="Alt text"> -->
 					<figcaption>
 						<a class="icon icon_link" href="https://www.artstation.com/artwork/X12EQn">
 							Click for art station page
@@ -90,19 +100,12 @@
 					</figcaption>
 				</figure>
 				<figure class="projects__item">
-					<img src="static/images/projects/coin/2.jpg" alt="Alt text">
+					<img src="https://cdna.artstation.com/p/assets/images/images/052/377/726/large/ray-coin-shader.jpg?1659630294" alt="breakdown" onerror=this.src="static/images/projects/ggj/1.jpg">
+					<!-- <img src="static/images/projects/coin/3.jpg" alt="Alt text"> -->
 					<figcaption>
-						<a class="icon icon_link" href="#">
-							Alt text
-						</a>
-					</figcaption>
-				</figure>
-				<figure class="projects__item">
-					<img src="static/images/projects/coin/3.jpg" alt="Alt text">
-					<figcaption>
-						<a class="icon icon_link" href="#" >
+						<!-- <a class="icon icon_link" href="#" >
 							Donec non ligula imperdiet, tincidunt quam ut, pellentesque nisi	
-						</a>
+						</a> -->
 					</figcaption>
 				</figure>
 			
