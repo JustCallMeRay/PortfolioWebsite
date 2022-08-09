@@ -79,7 +79,13 @@
 			<header class="common-section__header"> 
 				<h2>Vertex Animation</h2>
 				<p>
-					<p>The gears were modelled in fusion 360 as blender&rsquo;s extra meshes did not give the detail I wanted, the f360 sketch imported into blender (through FBX format) where they were positioned, UV unwrapped (top down projection onto second UV channel) and texture painted. In Unreal, each gear is masked by rounding U and V of UVs and multiplying permutations. Each gear is then spun, by vertex animation, around an unreal socket at each gear&rsquo;s centre (placed in blender, passed in by parameter.) Rotation speed is calculated by dividing time into the correct scale for each gear, this allows for time to be scaled by a parameter settable by a designer or in code to speed up or slow down the gear train. Using Unreal&rsquo;s &ldquo;per instance random&rdquo; node I can; add a random value to time, (offsetting the rotation to avoid similar looking trains), or multiply it with the time to give a varying speed. (A similar effect could be achieved in other engines with a random value based on location.)</p><br>
+					<p>
+						The gears were modelled in fusion 360 as blender's extra meshes did not give the detail 
+						I wanted, the f360 sketch imported into blender (through FBX format) where they were positioned, UV unwrapped 
+						(top down projection onto second UV channel) and texture painted. In Unreal, each gear is masked by rounding 
+						U and V of UVs and multiplying permutations. Each gear is then spun, by vertex animation, around an unreal socket 
+						at each gear's centre (placed in blender, passed in by parameter.) Rotation speed is calculated by dividing 
+						time into the correct scale for each gear, this allows for time to be scaled by a parameter settable by a designer or in code to speed up or slow down the gear train. Using Unreal's &ldquo;per instance random&rdquo; node I can; add a random value to time, (offsetting the rotation to avoid similar looking trains), or multiply it with the time to give a varying speed. (A similar effect could be achieved in other engines with a random value based on location.)</p><br>
 	
 					<p>The intention of this effect was to create a low cost*, accessible way to add interest to walls, doors and other areas that appear frequently.</p><br><br>
 	
@@ -104,7 +110,7 @@
 					alt="breakdown animation" onerror=this.src="static/images/projects/gears/1.jpg">
 					<figcaption>
 						<a class="icon icon_link" href="https://www.artstation.com/artwork/X12EQn">
-							Click for art station page
+							Click for art station page <br> breakdown of animation method
 						</a>
 					</figcaption>
 				</figure>
@@ -115,13 +121,18 @@
 						<!-- <a class="icon icon_link" href="#">
 							Duis feugiat, metus eu ullamcorper accumsan, massa risus dictum nis
 						</a> -->
+						<p>
+							Breakdown of the UV masking method.
+						</p>
 					</figcaption>
 				</figure>
 				<figure class="projects__item">
-					<!-- SAME IMAGE TWICE -->
-					<img src="https://cdnb.artstation.com/p/assets/images/images/052/378/053/large/ray-gears-2.jpg?1659630762" 
-					alt="breakdown masking" onerror=this.src="static/images/projects/gears/3.jpg">
+					<img src="https://cdnb.artstation.com/p/assets/images/images/052/405/539/large/ray-gears-uv.jpg?1659700982" 
+					alt="breakdown UVs" onerror=this.src="static/images/projects/gears/3.jpg">
 					<figcaption>
+						<p>
+							UVs (in their own channel)
+						</p>
 						<!-- <a class="icon icon_link" href="#">
 							Donec non ligula imperdiet, tincidunt quam ut, pellentesque nisi
 						</a> -->
