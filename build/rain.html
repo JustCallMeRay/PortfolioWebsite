@@ -55,24 +55,30 @@
 				<p>
 					<p>
 						I wanted to add to my procedural landscape with weather effects to increase realism and it felt necessary as most modern open world titles have them. This meant that all shader information had to be decided on the GPU, calculated using XYZ coordinates or a global variable controlled by the CPU. 
-					<br></p>
+						<br> 
+					</p>
 					<p>
 						I decided to do water first as this would be the only effect planned that changed the landscape surface shader. The effect is split up into three parts; rain drops hitting a surface, rain drops hitting water (ie a puddle) or a streak running down a surface. I chose to implement these with an "if" statement /switch, as they are all similarly expensive so the wavefront is near parallel, this approach does sacrifice the ability to blend from one effect to the other but is much better for performance. *
-					<br></p>
+						<br> 
+					</p> 
 					<p>
 						The choosing of which effect to use is done by evaluating the vertex normals, (so areas that have a normal that points upwards will only receive the raindrops on surface effect.) 
-					<br></p>
+						<br> 
+					</p> 
 					<p>	
 						I used triplanar projection to sample the textures for the effect, as this meant I can avoid creating UVs in the compute shader and the effect is always the correct size, even on props. 
-					<br></p>
+						<br> 
+					</p> 
 					<p>
 						*As each compute unit renders 4 pixels, it is possible for a single unit to do more than one of the effects. As this is a rare occurrence not every thread group will experience this so this method is still more efficient. There is also a possibility the compiler/engine will make changes to avoid this, masking the line by thread rather than by pixel, (if there is a way to enforce this, I would like to know, more out of interest than efficiency.)
-					<br></p>	
+						<br> 
+					</p> 	
 					<p>	
 						The shader is also loosely based on a <a href="https://www.youtube.com/watch?v=IjQWRjWZGn0">
 						GDC talk</a> but had to be changed to work with not only Unity (not pictured as unreal looks better) but also my previous code. This also meant that performance was more important as I am unable to occlusion cull as effectively as if it were a normal mesh (see 
 						<a href="landscape.html">my landscape</a> section).
-					<br></p>	
+						<br> 
+					</p>	
 				</p>
 			</header>
 			
