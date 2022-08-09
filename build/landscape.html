@@ -54,32 +54,35 @@
 				<h2>Compute Shaders and procedural generation</h2>
 				<p>
 					<p>
-						This landscape was generated completely procedurally using mostly GPU compute. There are many CPU implementations, but they often sacrifice performance as the base algorithms are better suited to parallel compute. <br>
-					</p>
+						This landscape was generated completely procedurally using mostly GPU compute. There are many CPU implementations, but they often sacrifice performance as the base algorithms are better suited to parallel compute. 
+						<br> 
+					</p> 
 					<p>
-						The CPU keeps track of where the player is and dispatches a compute shader which generates a visual chunk (but not a collision mesh) when the player is close enough. The CPU also handles normal optimizations like batching draw calls, occlusion and frustum culling. The Compute shader then generates a heightmap* based on several noise functions, this is then used as the height of the vertices of a subdivided square. (This is much more performant than marching squares/cubes and doesn't suffer much as the mesh is a convex plane.) It also uses voronoi noise to create biome areas stored as an ID number which are used in the surface shader.† This could  be used in the noise functions if the terrain is too visually similar, (altering min/max heights, amount of layers in perlin noise, creating sharper hill peaks, etc.) <br> 
+						The CPU keeps track of where the player is and dispatches a compute shader which generates a visual chunk (but not a collision mesh) when the player is close enough. The CPU also handles normal optimizations like batching draw calls, occlusion and frustum culling. The Compute shader then generates a heightmap* based on several noise functions, this is then used as the height of the vertices of a subdivided square. (This is much more performant than marching squares/cubes and doesn't suffer much as the mesh is a convex plane.) It also uses voronoi noise to create biome areas stored as an ID number which are used in the surface shader.† This could  be used in the noise functions if the terrain is too visually similar, (altering min/max heights, amount of layers in perlin noise, creating sharper hill peaks, etc.) 
+						<br> 
 					</p>	
 					<p>
 						The compute shader also calculates vertex normals as I needed them for my surface shader. I decided to keep the function simple so it would benefit from the parallelism of GPU compute, after the height calculations I re-sync all the threads so I can use the height values in the buffer, these are then used in several cross product calculations and the values of these are averaged to obtain the normals which are then placed in the buffer. The amount of cross product calculations can be determined at runtime depending on performance, hardware and HLOD, another compute shader can also be added and dispatched later, acting as an async function. 
-					<br></p>
+					<br> 
+					</p>
 					<p>
 						When the player is neighbouring a chunk that does not yet have collision, the buffer data is read from the GPU and a portion of these points are used to create a collision mesh.‡ The decimated mesh is then re-made on the CPU and set to the collider and cached. 
-					<br></p>
+					<br> 
+					</p>
 					<p>
 						* The heightmap is never baked, placed in shared memory, or stored outside of vertices but is a useful analogy and a helpful visualisation which is why I chose to include it. 
-						<br>
+						<br> 
 					</p>
 					<p>
 						† Placed meshes (like trees, grass, ect) can either run a worley noise function to recreate the biome ID or (HLSL) code can be added to store the points where the distance to three or more biome centres is similar/ equal in a different buffer and then create a biome bounding prism or a simple lookup of the closest vertex in the GPU buffer. 
-						<br>
+						<br> 
 					</p>
 					<p>
 						‡ These are sampled by using a larger triangle where each edge goes through one vertex (so each quad is 2x2 units, and having half as much detail but not changing any information in the buffer). This can be done by creating a new GPU buffer, (since only a position would be needed per index and fewer indices, this would be pretty small) but I felt it more performant to cache the whole buffer and only use certain indices from it. This does mean the high detail mesh needs to have an odd number of vertices in the X and Y directions, or some code added that handles it. (This could be done by adding a tall thin quad instead of a square one and a small square in the corner.) 
-						<br>
-					</p>
-
-				</p>
-			</header>
+						<br> 
+					</p> 
+				</p> 
+			</header> 
 			
 
 			<div class="projects-wrap">
