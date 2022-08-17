@@ -1,4 +1,6 @@
 *.txt 
 *~
+~*
 TODO.*
+ign_*.*
 # notes 
